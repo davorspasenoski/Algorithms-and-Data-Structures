@@ -225,15 +225,14 @@ class SLL<E> {
                  lista.delete(curr.succ);
              }else if(curr.element < 0 && curr.succ.element < 0){
                  lista.insertAfter(Math.abs(curr.element),curr);
-                 curr = curr.succ.succ;
+
              }else if(curr.element == 0 && curr.succ.element == 0) {
                  lista.delete(curr);
                  lista.delete(curr.succ);
 
-                 curr = curr.succ;
              }else if(curr.element == 0){
                  lista.delete(curr);
-              
+
              }else if(curr.succ.element == 0){
                  lista.delete(curr.succ);
              }
