@@ -209,31 +209,38 @@ class SLL<E> {
      static void main(String args[]) {
          Scanner scanner = new Scanner(System.in);
 
-         SLL<String> lista = new SLL<>();
+         SLL<Integer> lista = new SLL<>();
 
          int n = scanner.nextInt();
 
          for(int i = 0; i < n;i++){
-             String el = scanner.next();
+             int el = scanner.nextInt();
              lista.insertLast(el);
          }
 
          System.out.println(lista);
 
-         SLLNode<String> curr = lista.getFirst();
-         int br = 0;
-         int golemina = lista.size();
+         SLLNode<Integer> curr = lista.getFirst();
 
-            while (curr != null && br != golemina) {
-                char prva = curr.element.charAt(0);
-                if (Character.isLowerCase(prva)) {
-                    lista.insertLast(curr.element);
-                    lista.delete(curr);
-                }
-                br++;
-                curr = curr.succ;
-            }
+         while (curr != null && curr.succ!= null){
+             if(curr.element > 0 && curr.succ.element > 0){
+                 lista.delete(curr.succ);
+             }else if(curr.element < 0 && curr.succ.element < 0){
+                 lista.insertAfter(Math.abs(curr.element),curr);
 
+             }else if(curr.element == 0 && curr.succ.element == 0) {
+                 lista.delete(curr);
+                 lista.delete(curr.succ);
+
+             }else if(curr.element == 0){
+                 lista.delete(curr);
+
+             }else if(curr.succ.element == 0){
+                 lista.delete(curr.succ);
+             }
+             curr = curr.succ;
+
+         }
          System.out.println(lista);
 
      }
